@@ -1,14 +1,13 @@
 %define	name	eggdrop
-%define	version	1.6.17
-%define	release	3mdk
+%define	version	1.6.18
+%define	release	%mkrel 1
 
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-Summary:	Eggdrop is an IRC bot, written in C.
-Source0:	ftp://ftp.eggheads.org/pub/eggdrop/GNU/%{name}%{version}.tar.bz2
-Patch0:		eggdrop1.6.17-lib64.patch
-Patch1:		eggdrop1.6.17-64bit-fixes.patch
+Summary:	Eggdrop is an IRC bot, written in C
+Source0:	ftp://ftp.eggheads.org/pub/eggdrop/source/1.6/%{name}%{version}.tar.bz2
+Patch0:		eggdrop1.6.17-64bit-fixes.patch
 Group:		Networking/IRC
 BuildRequires:	tcl tcl-devel perl
 URL:		http://www.eggheads.org/
@@ -26,8 +25,7 @@ privileged users and let them gain ops, etc.
 
 %prep
 %setup -q -n eggdrop%{version}
-%patch0 -p1 -b .lib64
-%patch1 -p1 -b .64bit-fixes
+%patch0 -p1 -b .64bit-fixes
 autoconf
   
 %build
