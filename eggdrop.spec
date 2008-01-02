@@ -12,6 +12,7 @@ Patch1:		01_CVE-2007-2807_servmsg.patch
 Group:		Networking/IRC
 BuildRequires:	tcl tcl-devel perl
 URL:		http://www.eggheads.org/
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 License:	GPLv2+
 
 %description
