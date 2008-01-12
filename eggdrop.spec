@@ -1,6 +1,6 @@
 %define	name	eggdrop
 %define	version	1.6.18
-%define	release	%mkrel 3
+%define	release	%mkrel 4
 
 Name:		%{name}
 Version:	%{version}
