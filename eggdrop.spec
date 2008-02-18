@@ -5,7 +5,7 @@
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-Summary:	Eggdrop is an IRC bot, written in C
+Summary:	IRC bot, written in C
 Source0:	ftp://ftp.eggheads.org/pub/eggdrop/source/1.6/%{name}%{version}.tar.bz2
 Patch0:		eggdrop1.6.17-64bit-fixes.patch
 Patch1:		01_CVE-2007-2807_servmsg.patch
