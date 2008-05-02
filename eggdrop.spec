@@ -1,6 +1,6 @@
 %define	name	eggdrop
-%define	version	1.6.18
-%define	release	%mkrel 5
+%define	version	1.6.19
+%define	release	%mkrel 1
 
 Name:		%{name}
 Version:	%{version}
@@ -27,7 +27,7 @@ privileged users and let them gain ops, etc.
 %prep
 %setup -q -n eggdrop%{version}
 %patch0 -p1 -b .64bit-fixes
-%patch1 -p0 -b .overflow
+#%patch1 -p0 -b .overflow
 autoconf
   
 %build
