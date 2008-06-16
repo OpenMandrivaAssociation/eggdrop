@@ -1,10 +1,6 @@
-%define	name	eggdrop
-%define	version	1.6.19
-%define	release	%mkrel 1
-
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		eggdrop
+Version:	1.6.19
+Release:	%mkrel 2
 Summary:	IRC bot, written in C
 Source0:	ftp://ftp.eggheads.org/pub/eggdrop/source/1.6/%{name}%{version}.tar.bz2
 Patch0:		eggdrop1.6.17-64bit-fixes.patch
@@ -31,6 +27,7 @@ privileged users and let them gain ops, etc.
 autoconf
   
 %build
+export CPPFLAGS="-DHAVE_TCL_THREADS"
 #any optimizations on PPC break bots
 %ifnarch ppc
 export CFLAGS="$RPM_OPT_FLAGS"
@@ -39,7 +36,7 @@ export CFLAGS="$RPM_OPT_FLAGS"
 
 make config
 
-make
+%make
 
 %install
 rm -rf $RPM_BUILD_ROOT
