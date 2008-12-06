@@ -1,10 +1,12 @@
 Name:		eggdrop
 Version:	1.6.19
-Release:	%mkrel 2
+Release:	%mkrel 3
 Summary:	IRC bot, written in C
 Source0:	ftp://ftp.eggheads.org/pub/eggdrop/source/1.6/%{name}%{version}.tar.bz2
 Patch0:		eggdrop1.6.17-64bit-fixes.patch
 Patch1:		01_CVE-2007-2807_servmsg.patch
+# Kludge build for Tcl 8.6 (interp->result, TIP #330) - AdamW 2008/12
+Patch2:		eggdrop1.6.19-tcl86.patch
 Group:		Networking/IRC
 BuildRequires:	tcl tcl-devel perl
 URL:		http://www.eggheads.org/
@@ -24,6 +26,7 @@ privileged users and let them gain ops, etc.
 %setup -q -n eggdrop%{version}
 %patch0 -p1 -b .64bit-fixes
 #%patch1 -p0 -b .overflow
+%patch2 -p1 -b .tcl86
 autoconf
   
 %build
