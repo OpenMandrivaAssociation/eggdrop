@@ -1,12 +1,14 @@
 Name:		eggdrop
 Version:	1.6.19
-Release:	%mkrel 3
+Release:	%mkrel 4
 Summary:	IRC bot, written in C
 Source0:	ftp://ftp.eggheads.org/pub/eggdrop/source/1.6/%{name}%{version}.tar.bz2
 Patch0:		eggdrop1.6.17-64bit-fixes.patch
 Patch1:		01_CVE-2007-2807_servmsg.patch
 # Kludge build for Tcl 8.6 (interp->result, TIP #330) - AdamW 2008/12
 Patch2:		eggdrop1.6.19-tcl86.patch
+Patch3:		ftp://ftp.eggheads.org/pub/eggdrop/patches/official/1.6/eggdrop1.6.19+ctcpfix.patch.gz
+Patch4:		eggdrop1.6.19-fix-str-fmt.patch
 Group:		Networking/IRC
 BuildRequires:	tcl tcl-devel perl
 URL:		http://www.eggheads.org/
@@ -27,15 +29,16 @@ privileged users and let them gain ops, etc.
 %patch0 -p1 -b .64bit-fixes
 #%patch1 -p0 -b .overflow
 %patch2 -p1 -b .tcl86
-autoconf
-  
+%patch3 -p1 -b .ctcp
+%patch4 -p0 -b .str
+
 %build
-export CPPFLAGS="-DHAVE_TCL_THREADS"
+export CPPFLAGS="%{optflags} -DHAVE_TCL_THREADS"
 #any optimizations on PPC break bots
 %ifnarch ppc
-export CFLAGS="$RPM_OPT_FLAGS"
+export CFLAGS="%optflags"
 %endif
-./configure --prefix=%{_prefix} --libdir=%{_libdir}
+%configure2_5x --prefix=%{_prefix} --libdir=%{_libdir}
 
 make config
 
