@@ -51,12 +51,12 @@ cd $RPM_BUILD_ROOT
 mv $RPM_BUILD_ROOT%{_libdir}/eggdrop/doc/man1/ $RPM_BUILD_ROOT%{_mandir}
 
 #rpm installation complains otherwise due to rpm looking up the executables..
-perl -pi -e s":/path/to/executable/eggdrop:%{_libdir}/eggdrop/eggdrop:" $RPM_BUILD_DIR/eggdrop%{version}/eggdrop.conf
-cp -fR $RPM_BUILD_DIR/eggdrop%{version}/eggdrop.conf $RPM_BUILD_ROOT%{_docdir}/eggdrop-%{version}/
-#cp -Rf $RPM_BUILD_DIR/eggdrop%{version}/eggdrop.simple.conf $RPM_BUILD_ROOT%{_docdir}/eggdrop-%{version}/
-cp -Rf $RPM_BUILD_DIR/eggdrop%{version}/scripts/botchk $RPM_BUILD_ROOT%{_docdir}/eggdrop-%{version}/
-#cp -fR $RPM_BUILD_DIR/eggdrop%{version}/eggdrop.advanced.conf $RPM_BUILD_ROOT%{_docdir}/eggdrop-%{version}/
-#cp -fR $RPM_BUILD_DIR/eggdrop%{version}/eggdrop.complete.conf $RPM_BUILD_ROOT%{_docdir}/eggdrop-%{version}/
+perl -pi -e s":/path/to/executable/eggdrop:%{_libdir}/eggdrop/eggdrop:" %{_builddir}/eggdrop%{version}/eggdrop.conf
+cp -fR %{_builddir}/eggdrop%{version}/eggdrop.conf $RPM_BUILD_ROOT%{_docdir}/eggdrop-%{version}/
+#cp -Rf %{_builddir}/eggdrop%{version}/eggdrop.simple.conf $RPM_BUILD_ROOT%{_docdir}/eggdrop-%{version}/
+cp -Rf %{_builddir}/eggdrop%{version}/scripts/botchk $RPM_BUILD_ROOT%{_docdir}/eggdrop-%{version}/
+#cp -fR %{_builddir}/eggdrop%{version}/eggdrop.advanced.conf $RPM_BUILD_ROOT%{_docdir}/eggdrop-%{version}/
+#cp -fR %{_builddir}/eggdrop%{version}/eggdrop.complete.conf $RPM_BUILD_ROOT%{_docdir}/eggdrop-%{version}/
 #grumble rpm grumble wanted to require /path/to/eggdrop
 #bzip2 -9f $RPM_BUILD_ROOT%{_docdir}/eggdrop-%{version}/eggdrop.conf.dist
 
