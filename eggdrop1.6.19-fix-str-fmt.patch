@@ -1,0 +1,42 @@
+--- src/main.c.str	2009-05-20 07:08:41.000000000 +0200
++++ src/main.c	2009-05-20 07:09:09.000000000 +0200
+@@ -494,7 +494,7 @@
+         break;                  /* this should never be reached */
+       case 'h':
+         printf("\n%s\n\n", version);
+-        printf(EGG_USAGE);
++        printf("%s",EGG_USAGE);
+         printf("\n");
+         bg_send_quit(BG_ABORT);
+         exit(0);
+@@ -815,7 +815,7 @@
+   putlog(LOG_ALL, "*", "--- Loading %s (%s)", ver, s);
+   chanprog();
+   if (!encrypt_pass) {
+-    printf(MOD_NOCRYPT);
++    printf("%s",MOD_NOCRYPT);
+     bg_send_quit(BG_ABORT);
+     exit(1);
+   }
+--- src/misc.c.str	2009-05-20 07:09:24.000000000 +0200
++++ src/misc.c	2009-05-20 07:09:34.000000000 +0200
+@@ -577,7 +577,7 @@
+                * then reset repeats. We want the current time here,
+                * so put that in the file first.
+                */
+-              fprintf(logs[i].f, stamp);
++              fprintf(logs[i].f, "%s",stamp);
+               fprintf(logs[i].f, MISC_LOGREPEAT, logs[i].repeats);
+               logs[i].repeats = 0;
+               /* No need to reset logs[i].szlast here
+--- src/mod/transfer.mod/transfer.c.str	2009-05-20 07:10:19.000000000 +0200
++++ src/mod/transfer.mod/transfer.c	2009-05-20 07:10:31.000000000 +0200
+@@ -777,7 +777,7 @@
+ 
+ static void display_dcc_fork_send(int idx, char *buf)
+ {
+-  sprintf(buf, TRANSFER_CONN_SEND);
++  sprintf(buf, "%s", TRANSFER_CONN_SEND);
+ }
+ 
+ static int expmem_dcc_xfer(void *x)
