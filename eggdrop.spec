@@ -1,6 +1,6 @@
 Name:		eggdrop
 Version:	1.6.21
-Release:	1
+Release:	2
 Summary:	IRC bot, written in C
 Source0:	ftp://ftp.eggheads.org/pub/eggdrop/source/1.6/%{name}%{version}.tar.bz2
 Patch4:		eggdrop1.6.19-fix-str-fmt.patch
