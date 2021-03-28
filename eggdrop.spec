@@ -1,15 +1,15 @@
 Name:		eggdrop
-Version:	1.6.21
-Release:	2
+Version:	1.9.0
+Release:	1
 Summary:	IRC bot, written in C
-Source0:	ftp://ftp.eggheads.org/pub/eggdrop/source/1.6/%{name}%{version}.tar.bz2
-Patch4:		eggdrop1.6.19-fix-str-fmt.patch
+Source0:	http://ftp.eggheads.org/pub/%{name}/source/1.9/%{name}-%{version}.tar.gz
 Group:		Networking/IRC
 URL:		http://www.eggheads.org/
 License:	GPLv2+
-BuildRequires:	tcl 
-BuildRequires:	tcl-devel
 BuildRequires:	perl
+BuildRequires:	tcl 
+BuildRequires:	pkgconfig(tcl)
+BuildRequires:	pkgconfig(openssl)
 
 %description
 Eggdrop is an IRC bot, written in C.  If you don't know what IRC is,
@@ -21,8 +21,7 @@ to recognize banished users or sites and reject them, to recognize
 privileged users and let them gain ops, etc.
 
 %prep
-%setup -q -n eggdrop%{version}
-%patch4 -p0 -b .str
+%autosetup -p1
 
 %build
 export CPPFLAGS="%{optflags} -DHAVE_TCL_THREADS"
@@ -34,7 +33,7 @@ export CFLAGS="%optflags"
 
 make config
 
-%make LD="gcc %ldflags" \
+%make_build LD="gcc %ldflags" \
 	SHLIB_LD="gcc -shared -nostartfiles %ldflags" \
 	MOD_LD="gcc %ldflags"
 
@@ -44,7 +43,7 @@ mkdir -p %{buildroot}%{_libdir}
 mkdir -p %{buildroot}%{_docdir}/eggdrop-%{version}
 mkdir -p %{buildroot}%{_mandir}
 
-%makeinstall prefix=%{buildroot}%{_libdir}/eggdrop
+%make_install prefix=%{buildroot}%{_libdir}/eggdrop
 cd %{buildroot}
 mv %{buildroot}%{_libdir}/eggdrop/doc/man1/ %{buildroot}%{_mandir}
 
@@ -111,7 +110,7 @@ mv %{buildroot}%{_libdir}/eggdrop/README %{buildroot}%{_docdir}/eggdrop-%{versio
 - rebuild for new tcl
 - add tcl86.patch (kludge build for Tcl 8.6)
 
-* Mon Jun 16 2008 Per Øyvind Karlsen <peroyvind@mandriva.org> 1.6.19-2mdv2009.0
+* Mon Jun 16 2008 Per Ã˜yvind Karlsen <peroyvind@mandriva.org> 1.6.19-2mdv2009.0
 + Revision: 220395
 - be sure to activate threaded tcl support, otherwise eggdrop will fail to fork
   in background (workaround for actual problem in tcl that prevents test from
@@ -157,11 +156,11 @@ mv %{buildroot}%{_libdir}/eggdrop/README %{buildroot}%{_docdir}/eggdrop-%{versio
 * Sat Dec 31 2005 Mandriva Linux Team <http://www.mandrivaexpert.com/> 1.6.17-2mdk
 - Rebuild
 
-* Thu Nov 11 2004 Per Øyvind Karlsen <peroyvind@linux-mandrake.com> 1.6.17-1mdk
+* Thu Nov 11 2004 Per Ã˜yvind Karlsen <peroyvind@linux-mandrake.com> 1.6.17-1mdk
 - 1.6.17
 - regenerate P0 & P1
 
-* Sun Jul 25 2004 Per �yvind Karlsen <peroyvind@linux-mandrake.com> 1.6.16-1mdk
+* Sun Jul 25 2004 Per Øyvind Karlsen <peroyvind@linux-mandrake.com> 1.6.16-1mdk
 - 1.6.16
 - regenerate P0
 - drop useless prefix
@@ -170,14 +169,14 @@ mv %{buildroot}%{_libdir}/eggdrop/README %{buildroot}%{_docdir}/eggdrop-%{versio
 * Wed Oct 08 2003 Gwenole Beauchesne <gbeauchesne@mandrakesoft.com> 1.6.15-3mdk
 - lib64 & some 64-bit fixes
 
-* Mon Aug 11 2003 Per Øyvind Karlsen <peroyvind@linux-mandrake.com> 1.6.15-2mdk
+* Mon Aug 11 2003 Per Ã˜yvind Karlsen <peroyvind@linux-mandrake.com> 1.6.15-2mdk
 - from Pekka Savola <pekkas@netcore.fi>:
 	o fix eggdrop.conf run-path so installing the RPM works
 	o also install the eggdrop symlink, not just the version-specific binary
 	o use make not %%make to enable build on Red Hat Linux. (peroyvind: it doesn't
 	  support parallell make anyways)
 
-* Fri May 09 2003 Per Øyvind Karlsen <peroyvind@sintrax.net> 1.6.15-1mdk
+* Fri May 09 2003 Per Ã˜yvind Karlsen <peroyvind@sintrax.net> 1.6.15-1mdk
 - version 1.6.15
 - rm -rf $RPM_BUILD_ROOT in correct stage
 - actually use optimize flags
