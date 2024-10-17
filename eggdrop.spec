@@ -4,7 +4,7 @@ Release:	1
 Summary:	IRC bot, written in C
 Source0:	http://ftp.eggheads.org/pub/%{name}/source/1.9/%{name}-%{version}.tar.gz
 Group:		Networking/IRC
-URL:		http://www.eggheads.org/
+URL:		https://www.eggheads.org/
 License:	GPLv2+
 BuildRequires:	perl
 BuildRequires:	tcl 
